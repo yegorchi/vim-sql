@@ -13,12 +13,11 @@ mkdir ~/.sql
 ```
 
 ## Basic usage
-1. Create file ~/.sql/.sql and put an SQL statement between semicolons like following:
+1. Create file ~/.sql/.sql and mark SQL statements with semicolons like following:
 ```
 vi ~/.sql/.sql
-;
-select 1
-;
+select 1;
+select 2;
 ```
 2. Put cursor to any line of the SQL statement and execute the statement
 ```

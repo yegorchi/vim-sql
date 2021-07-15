@@ -1,7 +1,7 @@
 fun! Psql()
     normal $
-    let l:start_line = search(';$','bcnW') + 1
-    let l:end_line = search(';$','cnW') - 1
+    let l:start_line = search(';$','bnW') + 1
+    let l:end_line = search(';$','cnW')
     if l:start_line!=0 && l:end_line!=0
         let l:tstamp = strftime('%s')
         let l:filename = '~/.sql/'.l:tstamp.'.sql'
