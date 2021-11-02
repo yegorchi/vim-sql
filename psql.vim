@@ -1,12 +1,12 @@
-fun! Psql()
-    normal $
-    let l:start_line = search(';$','bnW') + 1
-    let l:end_line = search(';$','cnW')
-    if l:start_line!=0 && l:end_line!=0
-        let l:tstamp = strftime('%s')
-        let l:filename = '~/.sql/'.l:tstamp.'.sql'
-        let l:cmd= ':'.l:start_line.','.l:end_line.'w !psql postgresql://username:password@host:port/db &> '.l:filename
-        exec l:cmd
-        exec 'ped '.l:filename
-    endif
-endfun
+fu! Psql() abort
+  let l:from=search(';$','bnW')+1 | let l:to=search(';$','cnW')
+  if l:from!=0 && l:to!=0
+    let l:user='user:password'
+    let l:db='netloc:port/dbname'
+    let l:conn='postgresql://'.l:user.'@'.l:db
+    let l:file='~/.sql/'.strftime('%s').'.sql'
+    let l:cmd=':'.l:from.','.l:to.'w !psql '.l:conn.' &> '.l:file
+    exe l:cmd | exe 'ped '.l:file | :winc j | exe ':res 21' | exe 'se nowrap'
+    :winc k
+  en
+endf
